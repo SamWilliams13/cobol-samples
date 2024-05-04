@@ -33,15 +33,9 @@
            05  EX4-TRUE-VALUE            PIC X VALUE '1'.
            05  EX4-FALSE-VALUE           PIC X VALUE '0'.
 
-           05  EX5-FIELD                 PIC X. 
-               88  EX5-FLAG              VALUE 'T'. 
-
-           05  FILLER                    PIC X. 
-               88  EX6-FLAG              VALUE 'T', FALSE 'F'. 
-
-           05  EX7-FLAG                  PIC S9 COMP-3 VALUE -1.
-           05  EX7-TRUE                  PIC S9 COMP-3 VALUE 1.
-           05  EX7-FALSE                 PIC S9 COMP-3 VALUE -1. 
+           05  EX7-FLAG                  PIC S9 VALUE -1.
+           05  EX7-TRUE                  PIC S9 VALUE 1.
+           05  EX7-FALSE                 PIC S9 VALUE -1.
 
        PROCEDURE DIVISION.
       *----------------------------------------------------------------
@@ -132,42 +126,6 @@
            END-IF 
 
       *----------------------------------------------------------------
-      * Example 5: Pseudo-boolean using 88-level items without FALSE
-
-      * Set the flag 
-           SET EX5-FLAG TO TRUE 
-
-      * Test the flag 
-           if Ex5-Flag 
-               move 'true' to The-Answer 
-           end-if    
-      
-      * Toggle the flag 
-           IF EX5-FLAG  
-               MOVE SPACE TO EX5-FIELD 
-           ELSE     
-               SET EX5-FLAG TO TRUE
-           END-IF 
-
-      *----------------------------------------------------------------
-      * Example 6: Pseudo-boolean using 88-level items with FALSE
-
-      * Set the flag 
-           SET EX6-FLAG TO TRUE 
-
-      * Test the flag 
-           if Ex6-Flag 
-               move 'true' to The-Answer 
-           end-if    
-      
-      * Toggle the flag 
-           IF EX6-FLAG  
-               SET EX6-FLAG TO FALSE 
-           ELSE     
-               SET EX5-FLAG TO TRUE
-           END-IF 
-
-      *----------------------------------------------------------------
       * Example 7: Pseudo-boolean using numeric values
 
       * Set the flag 
@@ -181,5 +139,4 @@
       * Toggle the flag 
            COMPUTE EX7-FLAG = EX7-FLAG * -EX7-FLAG
 
-           GOBACK
            .

@@ -16,26 +16,24 @@
        DATA DIVISION. 
        WORKING-STORAGE SECTION. 
        01  GIVEN-VALUES.
-      * Mass of brake material in KG 
-           05  m                           COMP-2 VALUE 100. 
-      * Specific heat of brake material in Joules per KG x Temp Celsius     
-           05  sh                          COMP-2 VALUE 800.
-      * Weight of the truck in KG 
-           05  w                           COMP-2 VALUE 10000.
+      * Mass of brake material in KG
+           05  m                           PIC 999 VALUE 100.
+      * Specific heat of brake material in Joules per KG x Temp Celsius
+           05  sh                          PIC 999 VALUE 800.
+      * Weight of the truck in KG
+           05  w                           PIC 9(5) VALUE 10000.
       * Vertical displacement on the downhill run in meters
-           05  d                           COMP-2 VALUE 75.0.
+           05  d                           PIC 99V9 VALUE 75.0.
       * a: 9.8 meters per second squared
-           05  a                           COMP-2 VALUE 9.8.     
+           05  a                           PIC 9V9 VALUE 9.8.
 
        01  CALCULATED-VALUES.
       * Gravitational potential energy loss of the truck in descent
-           05  Mgh                         COMP-2.
-      * Temperature change in Celsius from the heat exchange 
-           05  deltaT-Celsius              COMP-2.
-      * Mass of brake material times specific heat  
-           05  mc                          COMP-2.     
-      * Temperature change formatted for display 
-           05  deltaT-Celsius-Formatted    PIC Z,ZZ9.99.     
+           05  Mgh                         PIC 9(6)V9(6).
+      * Temperature change in Celsius from the heat exchange
+           05  deltaT-Celsius              PIC 9(6)V9(6).
+      * Mass of brake material times specific heat
+           05  mc                          PIC 9(6)V9(6).
 
        PROCEDURE DIVISION.
 
@@ -53,8 +51,5 @@
                Mgh / mc 
            END-COMPUTE     
 
-           MOVE deltaT-Celsius TO deltaT-Celsius-Formatted
-           DISPLAY 'deltaT-Celsius: ' deltaT-Celsius-Formatted    
-
-           GOBACK
+           DISPLAY 'deltaT-Celsius: ' deltaT-Celsius
            .
